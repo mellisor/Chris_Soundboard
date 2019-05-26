@@ -1,0 +1,52 @@
+{% extends 'auth.html' %}
+
+{% block title %}Upload a File{% endblock %}
+
+{% block script %}
+<script>
+    function showId(elem) {
+        document.getElementById(elem).style.display = "inline";
+    }
+</script>
+{% endblock %}
+
+{% block style %}
+<style>
+    body {
+        text-align: center;
+    }
+
+    button {
+        margin-top: 20px;
+        border: 1px black;
+        border-style: solid;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    input {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block authblock %}
+<div id="catselect">
+    <h2>Choose a Category</h2>
+    <form method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if form.errors %}
+        <p>Try Again</p>
+        {% endif %}
+        {% for k in dirs %}
+        <input type="radio" id="{{k}}" value="{{k}}" name="cats" required> {{k}}
+        {% endfor %}
+        <input type="radio" id="New" value="New" name="cats" onclick="showId('NewName')" required>New Category
+        <input id="NewName" name="NewName" style="display: none">
+        <br>
+        <input type="file" name="file" required>
+        <br>
+        <button type="submit">Submit</button> 
+    </form>
+</div>
+{% endblock %}

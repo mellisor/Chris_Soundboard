@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mobile Soundboard</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link href="{% static "home/mobile.css" %}" rel="stylesheet" type="text/css">
+        <script src="{% static "home/mobile.js" %}"></script>
+    </head>
+    <body>
+        {% for cat, sounds in cats.items %}
+        <button class="catButton" id="{{cat}}" onclick="catClick({{cat}})">{{cat}}</button>
+        <div id="{{cat}}Div">
+            <button onclick="goback('{{cat}}Div')" class="backButton" id="{{cat}}ret">Back</button><br>
+            {% for sound in sounds %}
+            <button class="soundButton" id="{{sound|slice:"0:-4"|cut:" "}}" onclick='Play("/static/home/Sounds/{{cat}}/{{sound}}")'>{{sound|slice:"0:-4"}}</button>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </body>
+</html>

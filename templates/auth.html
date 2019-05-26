@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<!-- I made a thing -->
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% block style %}{% endblock %}
+    {% block script %}{% endblock %}
+</head>
+<body>
+    {% if user.is_authenticated %}
+    {% block authblock %}{% endblock %}
+    {% else %}
+    <a href='/accounts/login'>login</a>
+    {% endif %}
+</body>
+</html>

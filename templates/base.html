@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<!-- I made a thing -->
+<head>
+	<title>Chris Soundboard</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	{% load static %}
+	<link href="{% static "home/styles.css" %}" rel="stylesheet" type="text/css">
+	<script src="{% static "home/Scripts.js" %}"></script>
+</head>
+<body>
+	{% block bar %}{% endblock %}
+	{% block body %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block bar %}
+<div id="topBar">
+{% for k in cats %}
+<button id = "category" onclick="clicked('#{{k}}')">{{k}}</button>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block body %}
+{% for k,v in cats.items %}
+<div class="category" id="{{k}}">
+    {% for i in v %}
+    {% load static %}
+    <button onclick='Play("/static/home/Sounds/{{k}}/{{i}}")'>{{i|slice:"0:-4"}}</button>
+    {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}

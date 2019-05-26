@@ -1,0 +1,58 @@
+{% extends 'auth.html' %}
+
+{% block title %}Delete{%endblock%}
+
+{% block style %}
+<style>
+body {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 100px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+.grid-item {
+  background-color: lightyellow;
+  border: 1px black;
+  border-style: solid;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block script %}
+<script>
+    function Play(sound) {
+        var f = new Audio('/static/home/Sounds/' + sound);
+        f.play();
+    };
+</script>
+{% endblock %}
+
+{% block authblock %}
+<p>Hi {{user.username}}</p>
+
+{% for cat,values in cats.items %}
+<h1>{{cat}}</h1>
+<form method='post'>
+    {% csrf_token %}
+    <div class="grid-container" id ="{{cat}}">
+        {% for sound in values %}
+        <div class="grid-item">
+            <input type="radio" onclick="Play('{{cat}}/{{sound}}')" name="item" value="{{cat}}/{{sound}}" required>{{sound}}
+        </div>
+        {% endfor %}
+    </div>
+    <button type="submit" id="{{cat}}Delete">Delete</button>
+</form>
+{% endfor %}
+
+{% endblock %}

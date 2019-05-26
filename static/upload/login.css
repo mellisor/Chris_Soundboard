@@ -1,0 +1,33 @@
+body {
+    text-align: center;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 10px;
+    background-color: #C0B283;
+    color: #373737;
+    padding: 5px;
+    border: 0px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+#logblock {
+    padding-top: 10px;
+    position: fixed;
+	text-align: center;
+    width: 300px;
+	top: 100px;
+	left: 50%;
+    margin-left: -150px;
+	border-radius: 15px;
+	border: 1px #373737;
+	border-style: solid;
+    padding-bottom: 15px;
+    background-color: #F4F4F4;
+    color: #373737;
+}

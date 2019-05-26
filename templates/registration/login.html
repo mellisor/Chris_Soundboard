@@ -1,0 +1,19 @@
+<head>
+    <title>Login</title>
+    {% load static %}
+    <link href="{% static "upload/login.css" %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="logblock">
+        <p>Sign in to begin</p>
+        <form method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+            <h2>TRY AGAIN</h2>
+            {% endif %}
+            <input type="text" name="username" autofocus required id="id_username" placeholder="username"><br>
+            <input type="password" name="password" required id="id_password" placeholder="password"><br>
+            <button type="submit" id="loginbutton">Login</button>
+        </form>
+    </div>
+</body>

@@ -1,0 +1,41 @@
+{% extends 'auth.html' %}
+{% block title %}Upload{% endblock %}
+
+{% block style %}
+<style>
+body {
+    text-align: center;
+}
+
+button {
+    border: 1px black;
+    border-style: solid;
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
+}
+
+#block {
+    position: fixed;
+    width: 300px;
+    left: 50%;
+    margin-left: -160px;
+    margin-top: 100px;
+    border: 1px black;
+    border-style: solid;
+    padding: 20px;
+    background-color: lightyellow;
+}
+
+</style>
+{%endblock%}
+
+{% block authblock %}
+    <div id="block">
+        <p>Hello {{user.username}} </p>
+        <a href='/upload/create'><button>Upload</button></a>
+        <a href='/upload/delete'><button>Delete</button></a>
+        <br><br>
+        <a href='/accounts/logout'>logout</a>
+    </div>
+{% endblock %}
