@@ -1,0 +1,74 @@
+body,
+html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/static/sounds/images/Background.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  overflow-y: auto;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+nav a {
+  color: white;
+}
+
+nav a:hover {
+  color: rgb(192, 192, 192); 
+}
+
+.cat-card {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+@media (min-width: 992px) {
+  .cat-card {
+    width: 10em !important;
+  }
+}
+
+.selected {
+  opacity: 1;
+}
+
+
+.sound-btn {
+  height: 7em;
+  width: 75%;
+  text-overflow: ellipsis;
+  padding: 5px;
+}
+
+.btn-primary {
+  opacity: 0.8;
+  background-color: #73000a !important;
+  border: 0px;
+}
+
+.btn-secondary {
+  opacity: 0.8;
+  background-color: #000000 !important;
+}
+
+@media (min-width: 992px) {
+  .sound-btn {
+    height: 5em;
+    width: 10em;
+    text-overflow: ellipsis;
+    padding: 5px;
+  }
+}

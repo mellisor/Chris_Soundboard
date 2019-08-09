@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src={% static 'base/jquery.js' %}></script>
+    <script src={% static 'base/bootstrap.bundle.js' %}></script>
+    <script src={% static 'sounds/scripts/index.js' %}></script>
+    <link rel="stylesheet" href={% static 'base/bootstrap.min.css' %}>
+    <link rel="stylesheet" href={% static 'sounds/styles/index.css' %}>
+</head>
+
+<body>
+    <div class="bg">
+        <nav class="navbar navbar-expand-lg d-none d-lg-flex bg-black">
+            <ul class="navbar-nav mx-auto">
+            {% for category in categories %}
+                <li class="nav-item mx-2">
+                    <a class="nav-link cat-btn" href="#{{category.name}}" data-target="{{category.name}}" category="{{category.name}}">{{category.name}}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="row catDiv d-lg-none">
+                {% for category in categories %}
+                <div class="col-lg p-3" align="center">
+                    <div class="card bg-light cat-card" data-target="{{category.name}}" category="{{category.name}}">
+                        <div class="card-body">{{ category.name }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% for category in categories %}
+            <div category="{{category.name}}" class="row p-2 soundDiv" style="display: none;">
+                <button class="btn btn-secondary w-100  p-3 d-lg-none" onclick="showCategories()">Back</button>
+                {% for sound in category.soundbyte_set.all %}
+                <div class="col-lg p-2 sound" align="center" category="{{category.name}}">
+                    <button class="btn btn-primary sound-btn" onclick="play('{{sound.path}}');">{{sound.name}}</button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
