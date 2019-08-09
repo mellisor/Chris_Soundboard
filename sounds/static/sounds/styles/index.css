@@ -1,9 +1,5 @@
 body,
 html {
-  height: 100%;
-}
-
-.bg {
   /* The image used */
   background-image: url("/static/sounds/images/Background.jpg");
 
@@ -20,6 +16,7 @@ html {
 
 .bg-black {
   background-color: black;
+  opacity: .8;
 }
 
 nav a {
@@ -27,7 +24,7 @@ nav a {
 }
 
 nav a:hover {
-  color: rgb(192, 192, 192); 
+  color: rgb(192, 192, 192);
 }
 
 .cat-card {
@@ -44,7 +41,6 @@ nav a:hover {
 .selected {
   opacity: 1;
 }
-
 
 .sound-btn {
   height: 7em;

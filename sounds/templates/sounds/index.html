@@ -10,6 +10,7 @@
     <script src={% static 'sounds/scripts/index.js' %}></script>
     <link rel="stylesheet" href={% static 'base/bootstrap.min.css' %}>
     <link rel="stylesheet" href={% static 'sounds/styles/index.css' %}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
 </head>
 
 <body>
@@ -35,10 +36,10 @@
             </div>
             {% for category in categories %}
             <div category="{{category.name}}" class="row p-2 soundDiv" style="display: none;">
-                <button class="btn btn-secondary w-100  p-3 d-lg-none" onclick="showCategories()">Back</button>
+                <button class="btn btn-secondary w-100  p-3 d-lg-none" onclick="showCategories()"><span class="fas fa-arrow-left"></span> Back</button>
                 {% for sound in category.soundbyte_set.all %}
                 <div class="col-lg p-2 sound" align="center" category="{{category.name}}">
-                    <button class="btn btn-primary sound-btn" onclick="play('{{sound.path}}');">{{sound.name}}</button>
+                    <button class="btn btn-primary sound-btn" onclick="play('{{sound.file.url}}');">{{sound.name}}</button>
                 </div>
                 {% endfor %}
             </div>
