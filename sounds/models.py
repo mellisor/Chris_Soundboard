@@ -12,7 +12,7 @@ class Category(models.Model):
 
 def upload_file_path(instance,filename):
     print(filename)
-    return 'sounds/{}/{}'.format(instance.category.name,filename.split('/')[-1].replace('_',' '))
+    return 'sounds/{}/{}'.format(instance.category.name,filename.split('/')[-1].split('\\')[-1].replace('_',' '))
 
 class SoundByte(models.Model):
 

@@ -4,4 +4,5 @@ app_name = "upload"
 
 urlpatterns = [
     path('login', views.login, name="login"),
+    path('',views.index,name="index"),
 ]

@@ -1,0 +1,19 @@
+body {
+    background-color: #e0e0e0;
+}
+
+nav {
+    background-color: #6b7a8f;
+}
+
+i {
+    font-size: 5em;
+}
+
+.card {
+    cursor: pointer;
+}
+
+.opt-card {
+    height: 10em;
+}
