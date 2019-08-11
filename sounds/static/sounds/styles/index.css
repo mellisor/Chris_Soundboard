@@ -19,11 +19,12 @@ html {
   opacity: .8;
 }
 
-nav a {
+.cat-btn {
   color: white;
+  cursor: pointer;
 }
 
-nav a:hover {
+.cat-btn:hover {
   color: rgb(192, 192, 192);
 }
 

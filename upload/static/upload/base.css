@@ -1,0 +1,15 @@
+nav a {
+    color: white;
+}
+
+nav a:hover {
+    color: lightblue;
+}
+
+body {
+    background-color: #e0e0e0;
+}
+
+nav {
+    background-color: #6b7a8f;
+}
