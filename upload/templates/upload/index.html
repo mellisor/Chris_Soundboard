@@ -3,18 +3,21 @@
 {% load static %}
 <link rel="stylesheet" href={% static 'upload/upload.css' %}>
 <script>
-$(function() {
-    $("#createCard").click(function() {
-        window.location = "{% url 'upload:create' %}";
+    $(function () {
+        $("#createCard").click(function () {
+            window.location = "{% url 'upload:create' %}";
+        });
+        $("#editCard").click(function () {
+            window.location = "{% url 'upload:show_edit' %}";
+        });
     });
-});
 </script>
 {% endblock %}
 {% block content %}
 <div class="container p-5">
     <div class="row">
         <div class="col-lg p-3" align="middle">
-            <div class="card shadow bg-light opt-card">
+            <div id="editCard" class="card shadow bg-light opt-card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col" align="middle">

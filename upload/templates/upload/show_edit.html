@@ -1,0 +1,39 @@
+{% extends 'upload/base.html' %}
+{% block includes %}
+{% load static %}
+<link rel="stylesheet" href={% static 'upload/edit.css' %}>
+<script src={% static 'sounds/scripts/index.js' %}></script>
+{% endblock %}
+{% block content %}
+<div class="container justify-content-center">
+    {% for category in categories %}
+    <div class="row">
+        <div class="col" align="middle">
+            <h4 class="text-primary my-1">{{category.name}}</h4>
+        </div>
+    </div>
+    {% for soundbyte in category.soundbyte_set.all %}
+    <div class="row m-2">
+        <div class="card shadow sound-card w-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col col-text">
+                        <p class="mb-0">{{soundbyte.name}}</p>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-play text-primary" onclick="play('{{soundbyte.file.url}}');"></i>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-tools text-primary"></i>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-times text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}
