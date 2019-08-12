@@ -3,37 +3,74 @@
 {% load static %}
 <link rel="stylesheet" href={% static 'upload/edit.css' %}>
 <script src={% static 'sounds/scripts/index.js' %}></script>
+<script src={% static 'upload/advancedSerializer.js' %}></script>
+<script src={% static 'upload/edit.js' %}></script>
 {% endblock %}
 {% block content %}
-<div class="container justify-content-center">
-    {% for category in categories %}
-    <div class="row">
-        <div class="col" align="middle">
-            <h4 class="text-primary my-1">{{category.name}}</h4>
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Delete this soundbyte?</h4>
+            </div>
+            <div class="modal-body">
+                <p>This action can not be undone</p>
+                <form method="POST" id="deleteForm">
+                    {% csrf_token %}
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="deleteFile" checked>
+                        <label class="form-check-label">Delete file as well</label>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col pr-3">
+                            <button class="btn btn-secondary w-100" data-dismiss="modal"
+                                data-target="deleteModal">Cancel</button>
+                        </div>
+                        <div class="col pl-3">
+                            <button class="btn btn-danger w-100" type="button" onclick="doDelete()">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    {% for soundbyte in category.soundbyte_set.all %}
-    <div class="row m-2">
-        <div class="card shadow sound-card w-100">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col col-text">
-                        <p class="mb-0">{{soundbyte.name}}</p>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-play text-primary" onclick="play('{{soundbyte.file.url}}');"></i>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-tools text-primary"></i>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-times text-primary"></i>
+</div>
+<div class="container pt-3">
+    {% for category in categories %}
+    <div>
+        {% if category.soundbyte_set.all %}
+        <div class="row">
+            <div class="col" align="middle">
+                <h4 class="text-primary my-1">{{category.name}}</h4>
+            </div>
+        </div>
+        {% endif %}
+        {% for soundbyte in category.soundbyte_set.all %}
+        <div id="{{soundbyte.id}}" class="row m-2">
+            <div class="card shadow sound-card w-100">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto col-text">
+                            <p class="mb-0">{{soundbyte.id}}.</p>
+                        </div>
+                        <div class="col col-text">
+                            <p class="mb-0">{{soundbyte.name}}</p>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-play text-primary item-icon" {% if soundbyte.file %}onclick="play('{{soundbyte.file.url}}');"{% endif %}></i>
+                        </div>
+                        <div class="col-auto">
+                            <a class="fas fa-tools text-primary item-icon" href={% url 'upload:edit' soundbyte.id %}></a>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-times text-primary item-icon" onclick="showDelete({{soundbyte.id}});"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
     {% endfor %}
 </div>
 {% endblock %}

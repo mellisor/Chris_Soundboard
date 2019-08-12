@@ -1,0 +1,38 @@
+{% extends 'upload/base.html' %}
+{% block includes %}
+<script>
+    $(function() {
+        setTimeout(function() {
+            $(".alert").slideUp()
+        },5000);
+    });
+</script>
+{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% if edit_success %}
+<div class="alert alert-success">Soundbyte updated successfully!</div>
+{% endif %}
+{% if edit_error %}
+<div class="alert alert-danger">Update encountered errors</div>
+{% endif %}
+<div class="container pt-3">
+    <div class="card bg-light">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-auto">
+                    <a class="fas fa-arrow-left" href={% url 'upload:show_edit' %}></a>
+                </div>
+                <div class="col">
+                    <h4>Edit a Soundbyte</h4>
+                </div>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                {{edit_form|crispy}}
+                <button class="btn btn-primary">Edit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
 from sounds.forms import CategoryForm, SoundByteForm
 from sounds.models import Category, SoundByte
+import json, os
 # Create your views here.
 
 
@@ -49,5 +50,23 @@ def create(request):
 
 @login_required
 def show_edit(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        sound = SoundByte.objects.get(id=data['id'])
+        if data.get('deleteFile') and sound.file:
+            os.remove(sound.file.path)
+        sound.delete()
+        return HttpResponse()
     categories = Category.objects.all()
     return render(request, 'upload/show_edit.html', context={'categories': categories})
+
+@login_required
+def edit(request,id):
+    if request.method == "POST":
+        edit_form = SoundByteForm(request.POST,request.FILES,instance=SoundByte.objects.get(id=id))
+        if edit_form.is_valid():
+            edit_form.save()
+            return render(request,'upload/edit.html',context={'edit_form':edit_form,'edit_success':True})
+        return render(request,'upload/edit.html',context={'edit_form':edit_form,'edit_error':True})
+    edit_form = SoundByteForm(instance=SoundByte.objects.get(id=id))
+    return render(request,'upload/edit.html',context={'edit_form':edit_form})
