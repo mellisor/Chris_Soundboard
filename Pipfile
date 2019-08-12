@@ -10,6 +10,9 @@ autopep8 = "*"
 [packages]
 django = "*"
 django-crispy-forms = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3"

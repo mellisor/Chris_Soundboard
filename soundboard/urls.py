@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('sounds.urls')),
-    path('upload/',include('upload.urls')),
+    path('', include('sounds.urls')),
+    path('upload/', include('upload.urls')),
+    path('api/',include('api.urls')),
 ]

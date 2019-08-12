@@ -27,6 +27,7 @@
                     <h4>Edit a Soundbyte</h4>
                 </div>
             </div>
+            <hr>
             <form method="POST">
                 {% csrf_token %}
                 {{edit_form|crispy}}
